@@ -1,17 +1,9 @@
 import React, { useState } from 'react';
 
-// Виправлення: Код з файлу `utils.ts` перенесено сюди
 const getNumbers = (min: number, max: number): number[] => {
-  const numbers: number[] = [];
-
-  for (let i = min; i <= max; i++) {
-    numbers.push(i);
-  }
-
-  return numbers;
+  return Array.from({ length: max - min + 1 }, (_, i) => min + i);
 };
 
-// Виправлення: Компонент Pagination перенесено сюди
 interface Props {
   total: number;
   perPage: number;
@@ -119,7 +111,7 @@ export const App: React.FC = () => {
               id="perPageSelector"
               className="form-control"
               value={perPage}
-              onChange={event => onPerPageChange(Number(event.target.value))}
+              onChange={event => onPerPageChange(+event.target.value)}
             >
               <option value="3">3</option>
               <option value="5">5</option>
